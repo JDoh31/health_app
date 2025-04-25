@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-grid">
+            <div class="login-text">
+                <h2>Login</h2>
+            </div>
+            <div class="login-text">
+                Are you a new member? <span><a href="../Sign_Up/Sign_Up.html" style="color: #2190FF;"> Sign Up Here</a></span>
+            </div>
+            <br>
+            <div class="login-form">
+                <form>
+                    <!--Email field-->
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" name="email" required class="form-control" placeholder="Enter your email" aria-describedby="helpId"><br><br>
+                    </div>
+                    <!--Password field-->
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required class="form-control" placeholder="Enter your password" aria-describedby="helpId"><br><br>
+                    </div>
+                    <!--Submit and Reset Buttons-->
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary mb-s mr-1 waves-effect waves-light">Submit</button>
+                        <button type="reset" class="btn btn-danger mb-2 waves-effect waves-light">Reset</button>
+                    </div>
+                    <div class="login-text">
+                        Forgot Password?
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
