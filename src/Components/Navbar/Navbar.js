@@ -8,7 +8,7 @@ function Navbar() {
                 {/* Navigation Logo Section */}
                 <div className="nav_logo">
                     <a href="/">
-                        HealthNuts
+                        StayHealthy Inc
                         <img src={logo} alt="" height="26" width="52" viewBox="0 0 1000 1000"/>
                             <title>Bunch of Doctors png icon</title>
                     </a>
@@ -21,18 +21,18 @@ function Navbar() {
                 {/* Navigation Section */}
                 <ul className="nav_links active">
                     <li className="link">
-                        <a href="../LandingPage/LandingPage.html">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li className="link">
                         <a href="#">Appointments</a>
                     </li>
                     <li className="link">
-                        <a href="../Sign_UP/Sign_Up.html">
+                        <a href="/Sign_Up">
                             <button className="btn1">Sign Up</button>
                         </a>
                     </li>
                     <li className="link">
-                        <a href="../Login/Login.html">
+                        <a href="/Login">
                             <button className="btn1">Login</button>
                         </a>
                     </li>
