@@ -29,6 +29,7 @@ const Sign_Up = () => {
         console.log(name, email, phone, password)
         if (Object.keys(validationErrors).length === 0) {
             try {
+                console.log(Object.keys(validationErrors).length)
                 const response = await fetch(`${API_URL}/api/auth/register`, {
                     method: 'POST',
                     headers: {
