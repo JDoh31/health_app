@@ -14,6 +14,7 @@ const BookingConsultation = () => {
         fetch('https://api.npoint.io/9a5543d36f1460da2f63')
         .then(res => res.json())
         .then(data => {
+
             if (searchParams.get('speciality')) {
                 // window.reload()
                 const filtered = data.filter(doctor => doctor.speciality.toLowerCase() === searchParams.get('speciality').toLowerCase());
@@ -26,6 +27,7 @@ const BookingConsultation = () => {
                 setFilteredDoctors([]);
                 setIsSearched(false);
             }
+            localStorage.setItem('doctorData', JSON.stringify(data));
             setDoctors(data);
         })
         .catch(err => console.log(err));
@@ -52,10 +54,10 @@ const BookingConsultation = () => {
     const navigate = useNavigate();
     useEffect(() => {
         getDoctorsDetails();
-        // const authtoken = sessionStorage.getItem("auth-token");
-        // if (!authtoken) {
-        //     navigate("/login");
-        // }
+        const authtoken = sessionStorage.getItem("auth-token");
+        if (!authtoken) {
+            navigate("/login");
+        }
     }, [searchParams])
 
     return (
