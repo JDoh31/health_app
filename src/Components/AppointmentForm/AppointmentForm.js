@@ -4,8 +4,8 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [selectedSlot, setSelectedSlot] = useState(null);
-    const [appointmentDate, setAppointmentDate] = useState('');
-    const [appointmentTime, setAppointmentTime] = useState('');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
   
     const handleSlotSelection = (slot) => {
       setSelectedSlot(slot);
@@ -13,11 +13,11 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
   
     const handleFormSubmit = (e) => {
       e.preventDefault();
-      onSubmit({ name, phoneNumber, appointmentDate, appointmentTime });
+      onSubmit({ name, phoneNumber, date, time });
       setName('');
       setPhoneNumber('');
-      setAppointmentDate('');
-      setAppointmentTime('');
+      setDate('');
+      setTime('');
       setSelectedSlot(null);
     };
   
@@ -44,22 +44,22 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
           />
         </div>
         <div>
-            <label htmlFor="appointmentDate">Date of Appointment:</label>
+            <label htmlFor="date">Date of Appointment:</label>
             <input
             type="date"
-            id="appointmentDate"
-            value={appointmentDate}
-            onChange={(e) => setAppointmentDate(e.target.value)}
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
             required
             />
       </div>
       <div>
-        <label htmlFor="appointmentTime">Book Time:</label>
+        <label htmlFor="time">Book Time:</label>
         <input
           type="time"
-          id="appointmentTime"
-          value={appointmentTime}
-          onChange={(e) => setAppointmentTime(e.target.value)}
+          id="time"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
           required
         />
       </div>

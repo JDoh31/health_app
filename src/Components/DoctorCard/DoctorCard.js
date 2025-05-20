@@ -9,6 +9,12 @@ import { v4 as uuidv4 } from 'uuid';
 const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
   const [showModal, setShowModal] = useState(false);
   const [appointments, setAppointments] = useState([]);
+  //For holding data for necessary components//
+  let docData = {};
+  docData['name'] = name;
+  docData['speciality'] = speciality;
+  docData['experience'] = experience;
+  docData['ratings'] = ratings;
 
   const handleBooking = () => {
     setShowModal(true);
@@ -17,6 +23,8 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
   const handleCancel = (appointmentId) => {
     const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
     setAppointments(updatedAppointments);
+    localStorage.setItem('appointmentData', []);
+    localStorage.setItem('doctorData', []);
   };
 
   const handleFormSubmit = (appointmentData) => {
@@ -25,6 +33,8 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
       ...appointmentData,
     };
     const updatedAppointments = [...appointments, newAppointment];
+    localStorage.setItem('appointmentData', JSON.stringify(newAppointment));
+    localStorage.setItem('doctorData', JSON.stringify(docData));
     setAppointments(updatedAppointments);
     setShowModal(false);
   };
@@ -82,8 +92,8 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
                     <div className="bookedInfo" key={appointment.id}>
                       <p>Name: {appointment.name}</p>
                       <p>Phone Number: {appointment.phoneNumber}</p>
-                      <p>Date: {appointment.appointmentDate}</p>
-                      <p>Time: {appointment.appointmentTime}</p>
+                      <p>Date: {appointment.date}</p>
+                      <p>Time: {appointment.time}</p>
                       <button onClick={() => handleCancel(appointment.id)}>Cancel Appointment</button>
                     </div>
                   ))}

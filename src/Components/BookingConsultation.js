@@ -27,7 +27,6 @@ const BookingConsultation = () => {
                 setFilteredDoctors([]);
                 setIsSearched(false);
             }
-            localStorage.setItem('doctorData', JSON.stringify(data));
             setDoctors(data);
         })
         .catch(err => console.log(err));
@@ -53,7 +52,7 @@ const BookingConsultation = () => {
     };
     const navigate = useNavigate();
     useEffect(() => {
-        getDoctorsDetails();
+        getDoctorsDetails(); 
         const authtoken = sessionStorage.getItem("auth-token");
         if (!authtoken) {
             navigate("/login");
