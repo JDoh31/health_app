@@ -24,8 +24,7 @@
 
 .appointment-card__message {
     cursor: pointer;
-    float: right;
     font-size: 20px;
     line-height: 20px;
-    align-self: flex-end;
+    margin-top: 10px;
 }

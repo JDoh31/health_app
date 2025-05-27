@@ -11,6 +11,14 @@ const Notification = ({ children }) => {
   const [doctorData, setDoctorData] = useState(null);
   const [appointmentData, setAppointmentData] = useState(null);
 
+  const formatTime = (time) => {
+    const [hour, minute] = time.split(':');
+    const hourInt = parseInt(hour, 10);
+    const ampm = hourInt >= 12 ? 'PM' : 'AM';
+    const formattedHour = hourInt % 12 || 12; // Convert 0 to 12 for 12 AM/PM
+    return `${formattedHour}:${minute} ${ampm}`;
+  };
+
   // useEffect hook to perform side effects in the component
   useEffect(() => {
     // Retrieve stored username, doctor data, and appointment data from sessionStorage and localStorage
@@ -26,12 +34,12 @@ const Notification = ({ children }) => {
 
     // Set doctorData state if storedDoctorData exists
     if (storedDoctorData) {
-      setDoctorData(storedDoctorData);
+      setDoctorData(JSON.parse(storedDoctorData));
     }
 
     // Set appointmentData state if storedAppointmentData exists
     if (storedAppointmentData) {
-      setAppointmentData(storedAppointmentData);
+      setAppointmentData(JSON.parse(storedAppointmentData));
     }
   }, []); // Empty dependency array ensures useEffect runs only once after initial render
 
@@ -53,19 +61,19 @@ const Notification = ({ children }) => {
                 {/* Display doctor's name from doctorData */}
                 <strong>Doctor:</strong> {doctorData.name}
               </p>
-              <p className='apppointment-card__message'>
-                <strong>Speciality:</strong> {doctorData?.speciality}
+              <p className='appointment-card__message'>
+                <strong>Speciality: </strong> {doctorData.speciality}
               </p>
-              <p className='apppointment-card__message'>
-                <strong>Name:</strong> {appointmentData?.name}              </p>
-              <p className='apppointment-card__message'>
-                <strong>Phone Number:</strong> {appointmentData?.phoneNumber}
+              <p className='appointment-card__message'>
+                <strong>Name: </strong> {appointmentData.name}              </p>
+              <p className='appointment-card__message'>
+                <strong>Phone Number: </strong> {appointmentData.phoneNumber}
               </p>
-              <p className='apppointment-card__message'>
-                <strong>Date of Appointment:</strong> {appointmentData?.date}
+              <p className='appointment-card__message'>
+                <strong>Date of Appointment: </strong> {appointmentData.date}
               </p>
-              <p className='apppointment-card__message'>
-                <strong>Time Slot:</strong> {appointmentData?.time}
+              <p className='appointment-card__message'>
+                <strong>Time Slot: </strong> {formatTime(appointmentData.time)}
               </p>
             </div>
           </div>
