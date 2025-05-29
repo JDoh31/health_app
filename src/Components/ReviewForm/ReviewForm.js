@@ -11,27 +11,45 @@ const ReviewForm = () => {
   };
 
   return (
-    <div className='review-container'>
-      <h1>Reviews</h1>
-      <div className='review-title_row'>
-        <h3>Serial Number</h3>
-        <h3>Doctor Name</h3>
-        <h3>Doctor Speciality</h3>
-        <h3>Provide feedback</h3>
-        <h3>Review Given</h3>
+    <>
+      <div className='review-container'>
+        <div className='review-grid'>
+            <div className='review-text'>
+                <h1>Reviews</h1>
+            </div>
+            <div className='review-table'>
+                <table>
+                    <tr>
+                        <th>Serial Number</th>
+                        <th>Doctor Name</th>
+                        <th>Doctor Speciality</th>
+                        <th>Provide feedback</th>
+                        <th>Review Given</th>
+                    </tr>
+                    <tr>
+                        <td>null</td>
+                        <td>null</td>
+                        <td>null</td>
+                        <td>null</td>
+                        <td>null</td>
+                    </tr>
+                </table>
+            </div>
+            <div className='review-form'>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="review">Your Review:</label>
+                    <textarea
+                        id="review"
+                        value={review}
+                        onChange={(e) => setReview(e.target.value)}
+                        required
+                    />
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="review">Your Review:</label>
-        <textarea
-            id="review"
-            value={review}
-            onChange={(e) => setReview(e.target.value)}
-            required
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-
+    </>
   );
 };
 
