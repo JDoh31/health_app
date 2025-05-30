@@ -10,6 +10,7 @@ const ReviewForm = () => {
     console.log('Review submitted:', review);
   };
 
+
   return (
     <>
       <div className='review-container'>
@@ -30,8 +31,8 @@ const ReviewForm = () => {
                         <td>null</td>
                         <td>null</td>
                         <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
+                        <td><button>Click Here</button></td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
