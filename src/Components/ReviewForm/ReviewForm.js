@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ReviewForm.css'; // Import the CSS file for styling
 
 const ReviewForm = () => {
   const [review, setReview] = useState('');
+  const [doctors, setDoctors] = useState([]);
+
+  const getDoctors = () => {
+        fetch('https://api.npoint.io/9a5543d36f1460da2f63')
+        .then(res => res.json())
+        .then(data => {
+            setDoctors(data);
+        })
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -10,6 +19,9 @@ const ReviewForm = () => {
     console.log('Review submitted:', review);
   };
 
+  useEffect(()=> {
+    getDoctors();
+  })
 
   return (
     <>
@@ -27,13 +39,15 @@ const ReviewForm = () => {
                         <th>Provide feedback</th>
                         <th>Review Given</th>
                     </tr>
-                    <tr>
-                        <td>null</td>
-                        <td>null</td>
-                        <td>null</td>
+                    {doctors.map((doctor, index) => (
+                    <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{doctor.name}</td>
+                        <td>{doctor.speciality}</td>
                         <td><button>Click Here</button></td>
                         <td></td>
                     </tr>
+                    ))}
                 </table>
             </div>
             <div className='review-form'>
