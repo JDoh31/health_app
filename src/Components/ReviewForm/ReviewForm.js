@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ReviewForm.css'; // Import the CSS file for styling
+import GiveReviews from '../GiveReviews/GiveReviews';
 
 const ReviewForm = () => {
   const [review, setReview] = useState('');
@@ -44,23 +45,11 @@ const ReviewForm = () => {
                         <td>{index + 1}</td>
                         <td>{doctor.name}</td>
                         <td>{doctor.speciality}</td>
-                        <td><button>Click Here</button></td>
+                        <td><GiveReviews/></td>
                         <td></td>
                     </tr>
                     ))}
                 </table>
-            </div>
-            <div className='review-form'>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="review">Your Review:</label>
-                    <textarea
-                        id="review"
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                        required
-                    />
-                    <button type="submit">Submit</button>
-                </form>
             </div>
         </div>
       </div>
