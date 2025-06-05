@@ -49,7 +49,7 @@ function GiveReviews() {
       ) : (
         // Display form for giving feedback
         <form onSubmit={handleSubmit}>
-          <h2>Give Your Feedback</h2>
+          <h2>Give Your Review</h2>
           {/* Display warning message if not all fields are filled */}
           {showWarning && <p className="warning">Please fill out all fields.</p>}
           <div>
