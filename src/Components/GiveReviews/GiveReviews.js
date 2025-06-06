@@ -27,12 +27,14 @@ function GiveReviews() {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    sessionStorage.setItem('reviewData', JSON.stringify(formData));
     setSubmittedMessage(formData);
     setFormData({
       name: '',
       review: '',
       rating: 0
     });
+    setShowForm(false);
     // Check if all required fields are filled before submission
     if (formData.name && formData.review && formData.rating > 0) {
       setShowWarning(false);
@@ -60,6 +62,10 @@ function GiveReviews() {
             <label htmlFor="review">Review:</label>
             <textarea id="review" name="review" value={formData.review} onChange={handleChange} />
           </div>
+          <div>
+            <label htmlFor="rating">Rating (1-5):</label>
+            <input type='number' id="rating" name="rating" min={1} max={5} value={formData.rating} onChange={handleChange} />
+          </div>
           {/* Submit button for form submission */}
           <button type="submit">Submit</button>
         </form>
@@ -68,9 +74,10 @@ function GiveReviews() {
       {submittedMessage && (
         <div>
           <h3>Submitted Message:</h3>
-          <p>{submittedMessage}</p>
+          <p>{submittedMessage.review}</p>
         </div>
       )}
+
     </div>
   );
 }

@@ -14,14 +14,14 @@ const ReviewForm = () => {
         })
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log('Review submitted:', review);
-  };
-
   useEffect(()=> {
     getDoctors();
+    const reviewData = localStorage.getItem('reviewData');
+
+    if (reviewData) {
+        setReview(JSON.parse(reviewData));
+        console.log(review);
+    }
   })
 
   return (
