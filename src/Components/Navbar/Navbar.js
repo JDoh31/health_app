@@ -82,7 +82,7 @@ const Navbar = () => {
                 <div className="dropdown-menu">
                     <li onClick={toggleProfile}>Your Profile</li>
                     {showProfile && (
-                        <ProfileCard user={{ avatar: 'avatar_url', name: '', email: username }} />
+                        <ProfileCard user={{ avatar: 'avatar_url', name: username, email: username }} />
                     )}
                     <li href="/">Your Records</li>
                 </div>
