@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from './Pictures/doctor-5180142_1280.png';
+import ProfileCard from "../ProfileCard/ProfileCard";
 
 import "./Navbar.css";
 
@@ -8,12 +9,16 @@ import "./Navbar.css";
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const[email,setEmail]=useState("");
     const [showDropdown, setShowDropdown] = useState(false);
+    const [showProfile, setShowProfile] = useState(false);
     const handleClick = () => setClick(!click);
+
+    const toggleProfile = () => {
+        setShowProfile(!showProfile);
+    };
 
     
     const handleLogout = () => {
@@ -71,8 +76,16 @@ const Navbar = () => {
         </li>
         {isLoggedIn?(
           <>
-            <li className="link">
+            <div className="dropdown-menu"></div>
+            <li className="welcome-user">
                 <Link to="/">Welcome, {username.split('@')[0]}</Link>
+                <div className="dropdown-menu">
+                    <li onClick={toggleProfile}>Your Profile</li>
+                    {showProfile && (
+                        <ProfileCard user={{ avatar: 'avatar_url', name: '', email: username }} />
+                    )}
+                    <li href="/">Your Records</li>
+                </div>
             </li>
             <li className="link">
               <button className="btn2" onClick={handleLogout}>
