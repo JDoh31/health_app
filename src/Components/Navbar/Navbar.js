@@ -15,12 +15,17 @@ const Navbar = () => {
     const[email,setEmail]=useState("");
     const [showDropdown, setShowDropdown] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
+    const [showForm, setShowForm] = useState(false);
     const handleClick = () => setClick(!click);
 
     const toggleProfile = () => {
         setShowProfile(!showProfile);
     };
-
+    
+    const toggleForm = () => {
+        setShowProfile(!showProfile);
+        setShowForm(!showForm);
+    };
     
     const handleLogout = () => {
         sessionStorage.removeItem("auth-token");
@@ -47,10 +52,12 @@ const Navbar = () => {
     }
     useEffect(() => { 
       const storedemail = sessionStorage.getItem("email");
+      const storedname = sessionStorage.getItem("name");
 
       if (storedemail) {
             setIsLoggedIn(true);
-            setUsername(storedemail);
+            setEmail(storedemail);
+            setUsername(storedname);
           }
         }, []);
   return (
@@ -83,8 +90,12 @@ const Navbar = () => {
                 <div className="dropdown-menu">
                     <li onClick={toggleProfile}>Your Profile</li>
                     {showProfile && (
+                        <div onClick={toggleForm}>
+                            <ProfileCard user={{ avatar: 'avatar_url', name: username, email: email }} />
+                        </div>
+                    )}
+                    {showForm && (
                         <div>
-                            <ProfileCard user={{ avatar: 'avatar_url', name: username, email: username }} />
                             <ProfileForm/>
                         </div>
                     )}

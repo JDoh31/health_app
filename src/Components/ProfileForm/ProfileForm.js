@@ -101,6 +101,7 @@ const ProfileForm = () => {
         // Display success message to the user
         alert(`Profile Updated Successfully!`);
         navigate("/");
+        window.location.reload();
       } else {
         // Handle error case
         throw new Error("Failed to update profile");
