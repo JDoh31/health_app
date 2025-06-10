@@ -12,6 +12,18 @@ const ReportsLayout = () => {
       });
     };
 
+    const openPdf = () => {
+    // Opens the PDF in a new tab
+        window.open('/patient_report.pdf', '_blank');
+    };
+
+    const handleDownload = () => {
+        const link = document.createElement('a');
+        link.href = '/patient_report.pdf';       // Path relative to the public folder
+        link.download = 'patient_report.pdf';    // The filename users will get
+        link.click();
+    };
+
     useEffect(() => {
       getDoctors();
     }, []);
@@ -39,8 +51,8 @@ const ReportsLayout = () => {
                     <td>{index + 1}</td>
                     <td>{doctor.name}</td>
                     <td>{doctor.speciality}</td>
-                    <td><button>View Report</button></td>
-                    <td><button>Download Report</button></td>
+                    <td><button onClick={openPdf}>View Report</button></td>
+                    <td><button onClick={handleDownload}>Download Report</button></td>
                     </tr>
                 ))}
                 </tbody>
