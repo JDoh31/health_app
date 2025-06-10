@@ -6,7 +6,8 @@ import Sign_Up from './Components/Sign_Up/Sign_Up';
 import Login from './Components/Login/Login';
 import BookingConsultation from './Components/BookingConsultation';
 import Notification from './Components/Notification/Notification';
-import ReviewForm from './Components/ReviewForm/ReviewForm'; 
+import ReviewForm from './Components/ReviewForm/ReviewForm';
+import ReportsLayout from './Components/ReportsLayout/ReportsLayout'; 
 // Function component for the main App
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/Login" element={<Login/>}/>
                 <Route path="/instant-consultation" element={<BookingConsultation/>}/>
                 <Route path="/ReviewForm" element={<ReviewForm/>}/>
+                <Route path="/Reports" element={<ReportsLayout/>}/>
             </Routes>
           </Notification>
         </BrowserRouter>

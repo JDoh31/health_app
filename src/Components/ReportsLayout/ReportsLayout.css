@@ -1,0 +1,38 @@
+.report-container {
+    max-width: 1200px;
+    margin: auto;
+    margin-top:10%;
+    color: #414146;
+    padding: 0 20px;
+    position: static;
+    width: 100%;
+}
+
+.report-grid {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.report-table {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px #414146;
+}
+
+th {
+    border-bottom: 1px solid black;
+    background-color: lightgray;
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid black;
+}

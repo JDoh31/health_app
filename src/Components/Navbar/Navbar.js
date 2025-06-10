@@ -58,6 +58,9 @@ const Navbar = () => {
             setIsLoggedIn(true);
             setEmail(storedemail);
             setUsername(storedname);
+            if (!storedname) {
+                setUsername(storedemail);
+            }
           }
         }, []);
   return (
@@ -99,7 +102,7 @@ const Navbar = () => {
                             <ProfileForm/>
                         </div>
                     )}
-                    <li href="/">Your Records</li>
+                    <li><a href="/Reports">Your Report</a></li>
                 </div>
             </li>
             <li className="link">
