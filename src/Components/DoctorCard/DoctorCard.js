@@ -23,8 +23,10 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
   const handleCancel = (appointmentId) => {
     const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
     setAppointments(updatedAppointments);
-    localStorage.setItem('appointmentData', []);
-    localStorage.setItem('doctorData', []);
+    localStorage.removeItem('appointmentData', []);
+    localStorage.removeItem('doctorData', []);
+    // Dispatch a custom event
+    window.dispatchEvent(new Event('appointmentUpdated'));
   };
 
   const handleFormSubmit = (appointmentData) => {
@@ -36,6 +38,8 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
     localStorage.setItem('appointmentData', JSON.stringify(newAppointment));
     localStorage.setItem('doctorData', JSON.stringify(docData));
     setAppointments(updatedAppointments);
+    // Dispatch a custom event
+    window.dispatchEvent(new Event('appointmentUpdated'));
     setShowModal(false);
   };
 

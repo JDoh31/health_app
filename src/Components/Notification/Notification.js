@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './Notification.css';
+import { useLoaderData } from 'react-router-dom';
 
 // Function component Notification to display user notifications
 const Notification = ({ children }) => {
@@ -19,9 +20,15 @@ const Notification = ({ children }) => {
     return `${formattedHour}:${minute} ${ampm}`;
   };
 
-  // useEffect hook to perform side effects in the component
-  useEffect(() => {
-    // Retrieve stored username, doctor data, and appointment data from sessionStorage and localStorage
+  const clearNotification = () => {
+    setAppointmentData(null);
+    setDoctorData(null);
+    localStorage.removeItem('appointmentData');
+    localStorage.removeItem('doctorData');
+  };
+
+  const loadData = () => {
+        // Retrieve stored username, doctor data, and appointment data from sessionStorage and localStorage
     const storedUsername = sessionStorage.getItem('email');
     const storedDoctorData = localStorage.getItem('doctorData');
     const storedAppointmentData = localStorage.getItem('appointmentData');
@@ -41,6 +48,20 @@ const Notification = ({ children }) => {
     if (storedAppointmentData) {
       setAppointmentData(JSON.parse(storedAppointmentData));
     }
+  };
+
+  // useEffect hook to perform side effects in the component
+  useEffect(() => {
+
+    // Load once
+    loadData();
+
+    window.addEventListener('appointmentUpdated',loadData);
+
+    return () => {
+        window.removeEventListener('appointmentUpdated', loadData);
+    };
+
   }, []); // Empty dependency array ensures useEffect runs only once after initial render
 
   // Return JSX elements to display Navbar, children components, and appointment details if user is logged in
@@ -76,6 +97,7 @@ const Notification = ({ children }) => {
                 <strong>Time Slot: </strong> {formatTime(appointmentData.time)}
               </p>
             </div>
+            <button onClick={clearNotification}>Dismiss</button>
           </div>
         </>
       )}
